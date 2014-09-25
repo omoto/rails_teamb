@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+- 2.1.2
+# - 1.9.3
+# - jruby-19mode
+# - rbx-2
+deploy:
+  provider: heroku
+  api_key:
+    secure: JdUH+iGGkyGynPWnIgR15jpePkHnyTtUrcY+szQBLowDcRuM9uerKV2Co6GXWmkm6k0ECLbI/rsBvusTrxKHxh9sQqxJ+s2LpMW2LwyKjQam6Vd7C8Ejbho25bX9AMYmJL++WoNPP6VJb3bj2IjNXmZ/ol1/s8SY01K7E4fg/JM=
+  app: safe-spire-2252
+  on:
+    repo: omoto/rails_teamb
+addons:
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
